@@ -1,23 +1,21 @@
 import React from 'react'
 import { Button, StyleSheet, TextInput, View } from 'react-native'
 
-function AddPerson({ person, setPerson, submitHandler }) {
+function AddTodo({ todo, setTodo, submitHandler }) {
     return (
         <View>
             <TextInput
                 style={styles.input}
-                placeholder="یه نفر رو اضافه کن..."
+                placeholder="چه کاری میخوای انجام بدی؟"
                 placeholderTextColor="darkgrey"
-                onChangeText={setPerson}
-                value={person}
+                onChangeText={setTodo}
+                value={todo}
             />
             <Button
                 onPress={submitHandler}
-                title="اضافه کردن شخص"
+                title="اضافه کردن کار جدید"
                 color="orange"
             />
-
-
         </View>
     )
 }
@@ -34,4 +32,4 @@ const styles = StyleSheet.create({
 })
 
 
-export default AddPerson
+export default AddTodo

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import {
     Alert,
     FlatList,
@@ -8,35 +9,55 @@ import {
     TouchableWithoutFeedback,
     View
 } from 'react-native';
-import AddPerson from './components/AddPerson';
+
+
+import AddTodo from './components/AddTodo';
 import Header from './components/Header';
-import Persons from "./components/Persons"
+import Todo from "./components/Todo"
+
+
 
 function App() {
-    const [persons, setPersons] = useState([])
+    const [toDos, setToDos] = useState([
+        { id: 1, todo: "کار", completed: false },
+        { id: 2, todo: "قهوه", completed: false },
+    ])
 
-    const [person, setPerson] = useState("")
+    const [todo, setTodo] = useState("")
+
 
 
     const pressHandler = id => {
-        setPersons(prev => prev.filter(item => item.id !== id))
+        setToDos(prev => prev.filter(item => item.id !== id))
+    }
+
+
+    const completeHandler = id => {
+        const allToDos = [...toDos]
+        const findTodo = allToDos.findIndex(item => item.id === id)
+        const todo = allToDos[findTodo]
+        todo.completed = !todo.completed
+        allToDos[findTodo] = todo
+        setToDos(allToDos)
     }
 
     const submitHandler = () => {
-        if (person.length > 2) {
-            setPersons(prev => [
+        if (todo.length > 3) {
+            setToDos(prev => [
                 ...prev,
                 {
                     id: Math.floor(Math.random() * 10000),
-                    name: person
+                    todo: todo,
+                    completed: false
                 }
             ])
-            setPerson("")
+            setTodo("")
             Keyboard.dismiss()
         } else {
-            Alert.alert("به من توجه کن...", "اسمی که وارد میکنی باید بیشتر از 2 کاراکتر باشه", [{ text: "فهمیدم", onPress: () => { } }])
+            Alert.alert("به من توجه کن...", "کاری که وارد میکنی باید بیشتر از 2 کاراکتر باشه", [{ text: "فهمیدم", onPress: () => { } }])
         }
     }
+
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -45,20 +66,21 @@ function App() {
 
                 <View style={styles.body}>
 
-                    <AddPerson
-                        person={person}
-                        setPerson={setPerson}
+                    <AddTodo
+                        todo={todo}
+                        setTodo={setTodo}
                         submitHandler={submitHandler}
                     />
 
                     <View style={styles.items}>
                         <FlatList
                             keyExtractor={item => item.id.toString()}
-                            data={persons}
+                            data={toDos}
                             renderItem={({ item }) => (
-                                <Persons
-                                    person={item}
+                                <Todo
+                                    todo={item}
                                     pressHandler={pressHandler}
+                                    completeHandler={completeHandler}
                                 />
                             )}
                         />
@@ -75,9 +97,11 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
     },
     body: {
+        flex: 1,
         padding: 40
     },
     items: {
+        flex: 1,
         marginTop: 20
     }
 });

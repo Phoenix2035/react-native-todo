@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native'
 function Header() {
     return (
         <View style={styles.header}>
-            <Text style={styles.title}>مدیریت کننده اشخاص</Text>
+            <Text style={styles.title}>چه کاری میخوای انجام بدی</Text>
         </View>
     )
 }
