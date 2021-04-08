@@ -4,11 +4,12 @@ import {
     Alert,
     FlatList,
     Keyboard,
-    StyleSheet,
     Text,
     TouchableWithoutFeedback,
     View
 } from 'react-native';
+
+import { styles } from "./components/styles/componentsStyle"
 
 
 import AddTodo from './components/AddTodo';
@@ -91,20 +92,6 @@ function App() {
     );
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-    },
-    body: {
-        flex: 1,
-        padding: 40
-    },
-    items: {
-        flex: 1,
-        marginTop: 20
-    }
-});
 
 
 export default App

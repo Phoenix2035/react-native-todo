@@ -1,6 +1,8 @@
 import React from 'react'
 import { MaterialIcons } from "@expo/vector-icons"
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import {Text, View, TouchableOpacity } from 'react-native'
+
+import { styles } from "./styles/componentsStyle"
 
 function Todo({ todo, pressHandler, completeHandler }) {
     return (
@@ -23,23 +25,6 @@ function Todo({ todo, pressHandler, completeHandler }) {
     )
 }
 
-const styles = StyleSheet.create({
-    todo: {
-        padding: 20,
-        marginTop: 15,
-        borderWidth: 1,
-        borderColor: "orangered",
-        borderRadius: 20,
-        borderStyle: "dashed",
-        flexDirection: "row",
-        justifyContent: "space-between"
-    },
-    todoName: {
-        fontSize: 17,
-        fontWeight: "bold",
-    },
-
-})
 
 
 export default Todo
